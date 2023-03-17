@@ -25,8 +25,7 @@ return (
                     <Form.Label>Password Confirmation</Form.Label>
                     <Form.Control type="password" ref={passwordConfirmRef} required />
                 </Form.Group>
-
-                <Button className="w-100" type="submit">
+                <Button className="w-100" style={{marginTop: 30}} type="submit">
                     SignUp
                 </Button>
             </Form>
