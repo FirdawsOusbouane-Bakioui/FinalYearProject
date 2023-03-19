@@ -1,6 +1,13 @@
 import React from "react"
 import Signup from "./Signup"
 import { Container } from 'react-bootstrap'
+import { AuthProvider } from "../Contexts/AuthContext";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Dashboard from "./Dashboard"
+import Login from "./Login";
+import PrivateRoute from "./PrivateRoute";
+
+// was line21= <PrivateRoute exact path = "/" element={<Dashboard/>} />
 
 function App() {
   return (
@@ -8,7 +15,21 @@ function App() {
       style={{ minHeight: "100vh"}}    
     >
         <div className="w-100" style={{ maxWidth: '400px'}}>
-          <Signup />
+          <Router>
+            <AuthProvider>
+              <Routes>
+                <Route path ='/'
+                element ={
+                  <PrivateRoute>
+                    <Dashboard/>
+                  </PrivateRoute>
+                }>
+                </Route>
+                <Route path = "/signup" element={<Signup/>} />
+                <Route path = "/login" element={<Login/>} />
+              </Routes>
+            </AuthProvider>
+          </Router>
 
         </div>
     </Container>
